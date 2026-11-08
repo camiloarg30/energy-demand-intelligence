@@ -1,0 +1,13 @@
+﻿control,resultado,interpretacion
+Filas,52416,Registros observados en el CSV local
+Columnas,9,Variables con nombres estandarizados
+Primera marca de tiempo,2017-01-01 00:00:00,Fecha y hora iniciales interpretadas
+Última marca de tiempo,2017-12-30 23:50:00,Fecha y hora finales interpretadas
+Celdas nulas,0,Revisión de todas las columnas
+Filas duplicadas,0,Duplicados en todas las columnas
+Marcas de tiempo duplicadas,0,Integridad de la clave temporal
+Intervalos distintos de diez minutos,0,Intervalos entre registros presentes
+Registros esperados para 2017 completo,52560,365 días con 144 registros diarios
+Diferencia frente al año completo,144,No se imputan observaciones ausentes
+Instancias reportadas por UCI,52417,Metadato publicado por el repositorio
+Diferencia de filas frente a UCI,1,Discrepancia que permanece abierta

@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+
+# Entornos y secretos
+.venv/
+venv/
+.Rhistory
+.RData
+.env
+.env.*
+!.env.example
+
+# Resultados generados
+outputs/forecasts/*
+!outputs/forecasts/.gitkeep
+outputs/powerbi/*
+!outputs/powerbi/.gitkeep
+
+# Sistema operativo y editor
+.DS_Store
+Thumbs.db
+.vscode/settings.json
+
+# Logs
+*.log
+*.tmp
+
+# Internal AI instructions
+/AGENTS.md
+/docs/Antigravity_Prompts.md

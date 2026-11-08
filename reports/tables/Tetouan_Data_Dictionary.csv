@@ -1,0 +1,10 @@
+﻿variable,nombre_original,descripcion,rol,unidad,estado_unidad,nota
+datetime,DateTime,Marca de tiempo del registro,Tiempo,Frecuencia observada de diez minutos,Frecuencia comprobada en el archivo,La zona horaria no está especificada por UCI.
+temperature,Temperature,Variable meteorológica de temperatura,Predictora candidata,No documentada por UCI,Pendiente de confirmar,"Los valores son compatibles con grados Celsius, pero no se fija la unidad sin documentación primaria."
+humidity,Humidity,Variable meteorológica de humedad,Predictora candidata,No documentada por UCI,Pendiente de confirmar,Los valores son compatibles con humedad relativa en porcentaje.
+wind_speed,Wind Speed,Variable meteorológica de velocidad del viento,Predictora candidata,No documentada por UCI,Pendiente de confirmar,No se atribuye una unidad sin documentación primaria.
+general_diffuse_flows,general diffuse flows,Medida ambiental etiquetada como flujo difuso general,Predictora candidata,No documentada por UCI,Pendiente de confirmar,Falta verificar la definición física exacta.
+diffuse_flows,diffuse flows,Medida ambiental etiquetada como flujo difuso,Predictora candidata,No documentada por UCI,Pendiente de confirmar,Falta verificar la definición física exacta.
+zone_1_load,Zone 1 Power Consumption,"Carga registrada en Zone 1, denominada Quads en literatura reciente",Variable objetivo candidata,"kW según parte de la literatura, no confirmado por UCI",Provisional,No convertir a kWh hasta verificar la semántica física de la medida.
+zone_2_load,Zone 2  Power Consumption,"Carga registrada en Zone 2, denominada Smir en literatura reciente",Variable objetivo candidata,"kW según parte de la literatura, no confirmado por UCI",Provisional,No convertir a kWh hasta verificar la semántica física de la medida.
+zone_3_load,Zone 3  Power Consumption,"Carga registrada en Zone 3, denominada Boussafou en literatura reciente",Variable objetivo candidata,"kW según parte de la literatura, no confirmado por UCI",Provisional,No convertir a kWh hasta verificar la semántica física de la medida.

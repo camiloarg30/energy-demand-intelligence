@@ -1,0 +1,4 @@
+﻿,zone_1_load,zone_2_load,zone_3_load
+zone_1_load,1.0,0.8345,0.7507
+zone_2_load,0.8345,1.0,0.5709
+zone_3_load,0.7507,0.5709,1.0
