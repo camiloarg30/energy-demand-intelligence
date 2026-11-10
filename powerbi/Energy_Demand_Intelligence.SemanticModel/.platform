@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Energy_Demand_Intelligence"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "484e813f-c87e-4301-b8ea-0055b37134e6"
+  }
+}

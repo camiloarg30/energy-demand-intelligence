@@ -1,0 +1,64 @@
+table Fact_Demanda_Horaria
+	lineageTag: e8c6e001-0006-4000-8000-000000000001
+
+	column datetime
+		dataType: dateTime
+		formatString: yyyy-MM-dd HH:mm:ss
+		lineageTag: e8c6e001-0006-4000-8000-000000000011
+		summarizeBy: none
+		sourceColumn: datetime
+
+		annotation SummarizationSetBy = Automatic
+
+	column zona_id
+		dataType: string
+		lineageTag: e8c6e001-0006-4000-8000-000000000012
+		summarizeBy: none
+		sourceColumn: zona_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column demanda
+		dataType: double
+		lineageTag: e8c6e001-0006-4000-8000-000000000013
+		summarizeBy: sum
+		sourceColumn: demanda
+
+		annotation SummarizationSetBy = Automatic
+
+	column temperatura
+		dataType: double
+		lineageTag: e8c6e001-0006-4000-8000-000000000014
+		summarizeBy: sum
+		sourceColumn: temperatura
+
+		annotation SummarizationSetBy = Automatic
+
+	column humedad
+		dataType: double
+		lineageTag: e8c6e001-0006-4000-8000-000000000015
+		summarizeBy: sum
+		sourceColumn: humedad
+
+		annotation SummarizationSetBy = Automatic
+
+	column viento
+		dataType: double
+		lineageTag: e8c6e001-0006-4000-8000-000000000016
+		summarizeBy: sum
+		sourceColumn: viento
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_Demanda_Horaria = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents("C:\Users\camil\Escritorio\energy_demand_intelligence_repo\outputs\powerbi\Fact_Demanda_Horaria.csv"), [Delimiter=",", Columns=6, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+					#"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+					#"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"datetime", type datetime}, {"zona_id", type text}, {"demanda", type number}, {"temperatura", type number}, {"humedad", type number}, {"viento", type number}})
+				in
+					#"Changed Type"
+
+	annotation PBI_ResultType = Table
+

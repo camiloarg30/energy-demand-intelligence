@@ -1,0 +1,50 @@
+table Dim_Ventana_Historica
+	lineageTag: e8c6e001-0004-4000-8000-000000000001
+
+	column ventana_id
+		dataType: string
+		lineageTag: e8c6e001-0004-4000-8000-000000000011
+		summarizeBy: none
+		sourceColumn: ventana_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column ventana_nombre
+		dataType: string
+		lineageTag: e8c6e001-0004-4000-8000-000000000012
+		summarizeBy: none
+		sourceColumn: ventana_nombre
+		sortByColumn: orden
+
+		annotation SummarizationSetBy = Automatic
+
+	column horas_atras
+		dataType: int64
+		formatString: 0
+		lineageTag: e8c6e001-0004-4000-8000-000000000013
+		summarizeBy: none
+		sourceColumn: horas_atras
+
+		annotation SummarizationSetBy = Automatic
+
+	column orden
+		dataType: int64
+		formatString: 0
+		lineageTag: e8c6e001-0004-4000-8000-000000000014
+		summarizeBy: none
+		sourceColumn: orden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Ventana_Historica = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents("C:\Users\camil\Escritorio\energy_demand_intelligence_repo\outputs\powerbi\Dim_Ventana_Historica.csv"), [Delimiter=",", Columns=4, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+					#"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+					#"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"ventana_id", type text}, {"ventana_nombre", type text}, {"horas_atras", Int64.Type}, {"orden", Int64.Type}})
+				in
+					#"Changed Type"
+
+	annotation PBI_ResultType = Table
+

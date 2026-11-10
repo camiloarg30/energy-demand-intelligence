@@ -1,0 +1,108 @@
+table Fact_Probabilidad_Pico
+	lineageTag: e8c6e001-0008-4000-8000-000000000001
+
+	column fecha_origen
+		dataType: dateTime
+		formatString: yyyy-MM-dd HH:mm:ss
+		lineageTag: e8c6e001-0008-4000-8000-000000000011
+		summarizeBy: none
+		sourceColumn: fecha_origen
+
+		annotation SummarizationSetBy = Automatic
+
+	column zona_id
+		dataType: string
+		lineageTag: e8c6e001-0008-4000-8000-000000000012
+		summarizeBy: none
+		sourceColumn: zona_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column horizonte
+		dataType: string
+		lineageTag: e8c6e001-0008-4000-8000-000000000013
+		summarizeBy: none
+		sourceColumn: horizonte
+
+		annotation SummarizationSetBy = Automatic
+
+	column modelo
+		dataType: string
+		lineageTag: e8c6e001-0008-4000-8000-000000000014
+		summarizeBy: none
+		sourceColumn: modelo
+
+		annotation SummarizationSetBy = Automatic
+
+	column es_modelo_seleccionado
+		dataType: boolean
+		lineageTag: e8c6e001-0008-4000-8000-000000000015
+		summarizeBy: none
+		sourceColumn: es_modelo_seleccionado
+
+		annotation SummarizationSetBy = Automatic
+
+	column probabilidad_al_menos_un_pico
+		dataType: double
+		formatString: 0.0 %
+		lineageTag: e8c6e001-0008-4000-8000-000000000016
+		summarizeBy: sum
+		sourceColumn: probabilidad_al_menos_un_pico
+
+		annotation SummarizationSetBy = Automatic
+
+	column probabilidad_red_al_menos_un_pico
+		dataType: double
+		formatString: 0.0 %
+		lineageTag: e8c6e001-0008-4000-8000-000000000021
+		summarizeBy: max
+		sourceColumn: probabilidad_red_al_menos_un_pico
+
+		annotation SummarizationSetBy = Automatic
+
+	column pico_esperado_max
+		dataType: double
+		lineageTag: e8c6e001-0008-4000-8000-000000000017
+		summarizeBy: sum
+		sourceColumn: pico_esperado_max
+
+		annotation SummarizationSetBy = Automatic
+
+	column hora_pico_esperado
+		dataType: string
+		lineageTag: e8c6e001-0008-4000-8000-000000000018
+		summarizeBy: none
+		sourceColumn: hora_pico_esperado
+
+		annotation SummarizationSetBy = Automatic
+
+	column horas_elevadas_esperadas
+		dataType: int64
+		formatString: 0
+		lineageTag: e8c6e001-0008-4000-8000-000000000019
+		summarizeBy: sum
+		sourceColumn: horas_elevadas_esperadas
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_simulaciones
+		dataType: int64
+		formatString: 0
+		lineageTag: e8c6e001-0008-4000-8000-000000000020
+		summarizeBy: sum
+		sourceColumn: num_simulaciones
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_Probabilidad_Pico = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents("C:\Users\camil\Escritorio\energy_demand_intelligence_repo\outputs\powerbi\Fact_Probabilidad_Pico.csv"), [Delimiter=",", Columns=11, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+					#"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+					#"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"fecha_origen", type datetime}, {"zona_id", type text}, {"horizonte", type text}, {"modelo", type text}, {"es_modelo_seleccionado", type logical}, {"probabilidad_al_menos_un_pico", type number}, {"probabilidad_red_al_menos_un_pico", type number}, {"pico_esperado_max", type number}, {"hora_pico_esperado", type text}, {"horas_elevadas_esperadas", Int64.Type}, {"num_simulaciones", Int64.Type}})
+				in
+					#"Changed Type"
+
+	annotation PBI_ResultType = Table
+

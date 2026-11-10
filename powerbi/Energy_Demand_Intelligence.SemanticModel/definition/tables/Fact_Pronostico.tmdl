@@ -1,0 +1,114 @@
+table Fact_Pronostico
+	lineageTag: e8c6e001-0007-4000-8000-000000000001
+
+	column fecha_origen
+		dataType: dateTime
+		formatString: yyyy-MM-dd HH:mm:ss
+		lineageTag: e8c6e001-0007-4000-8000-000000000011
+		summarizeBy: none
+		sourceColumn: fecha_origen
+
+		annotation SummarizationSetBy = Automatic
+
+	column lead_horas
+		dataType: int64
+		formatString: 0
+		lineageTag: e8c6e001-0007-4000-8000-000000000012
+		summarizeBy: sum
+		sourceColumn: lead_horas
+
+		annotation SummarizationSetBy = Automatic
+
+	column datetime
+		dataType: dateTime
+		formatString: yyyy-MM-dd HH:mm:ss
+		lineageTag: e8c6e001-0007-4000-8000-000000000013
+		summarizeBy: none
+		sourceColumn: datetime
+
+		annotation SummarizationSetBy = Automatic
+
+	column zona_id
+		dataType: string
+		lineageTag: e8c6e001-0007-4000-8000-000000000014
+		summarizeBy: none
+		sourceColumn: zona_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column horizonte
+		dataType: string
+		lineageTag: e8c6e001-0007-4000-8000-000000000015
+		summarizeBy: none
+		sourceColumn: horizonte
+
+		annotation SummarizationSetBy = Automatic
+
+	column modelo
+		dataType: string
+		lineageTag: e8c6e001-0007-4000-8000-000000000016
+		summarizeBy: none
+		sourceColumn: modelo
+
+		annotation SummarizationSetBy = Automatic
+
+	column es_modelo_seleccionado
+		dataType: boolean
+		lineageTag: e8c6e001-0007-4000-8000-000000000017
+		summarizeBy: none
+		sourceColumn: es_modelo_seleccionado
+
+		annotation SummarizationSetBy = Automatic
+
+	column real
+		dataType: double
+		lineageTag: e8c6e001-0007-4000-8000-000000000018
+		summarizeBy: sum
+		sourceColumn: real
+
+		annotation SummarizationSetBy = Automatic
+
+	column predicho
+		dataType: double
+		lineageTag: e8c6e001-0007-4000-8000-000000000019
+		summarizeBy: sum
+		sourceColumn: predicho
+
+		annotation SummarizationSetBy = Automatic
+
+	column predicho_inf_80
+		dataType: double
+		lineageTag: e8c6e001-0007-4000-8000-000000000020
+		summarizeBy: sum
+		sourceColumn: predicho_inf_80
+
+		annotation SummarizationSetBy = Automatic
+
+	column predicho_sup_80
+		dataType: double
+		lineageTag: e8c6e001-0007-4000-8000-000000000021
+		summarizeBy: sum
+		sourceColumn: predicho_sup_80
+
+		annotation SummarizationSetBy = Automatic
+
+	column threshold_p95
+		dataType: double
+		lineageTag: e8c6e001-0007-4000-8000-000000000022
+		summarizeBy: sum
+		sourceColumn: threshold_p95
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_Pronostico = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents("C:\Users\camil\Escritorio\energy_demand_intelligence_repo\outputs\powerbi\Fact_Pronostico.csv"), [Delimiter=",", Columns=12, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+					#"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+					#"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"fecha_origen", type datetime}, {"lead_horas", Int64.Type}, {"datetime", type datetime}, {"zona_id", type text}, {"horizonte", type text}, {"modelo", type text}, {"es_modelo_seleccionado", type logical}, {"real", type number}, {"predicho", type number}, {"predicho_inf_80", type number}, {"predicho_sup_80", type number}, {"threshold_p95", type number}})
+				in
+					#"Changed Type"
+
+	annotation PBI_ResultType = Table
+

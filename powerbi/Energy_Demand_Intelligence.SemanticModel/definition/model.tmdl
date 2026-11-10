@@ -1,0 +1,31 @@
+model Model
+	culture: es-MX
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-MX
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+annotation PBI_QueryOrder = ["Dim_Zona","Dim_Calendario","Dim_Horizonte","Dim_Ventana_Historica","Dim_Fecha_Origen","Fact_Demanda_Horaria","Fact_Pronostico","Fact_Probabilidad_Pico","Fact_Eventos_Clasificacion"]
+
+ref table Dim_Zona
+ref table Dim_Calendario
+ref table Dim_Horizonte
+ref table Dim_Ventana_Historica
+ref table Dim_Fecha_Origen
+ref table Fact_Demanda_Horaria
+ref table Fact_Pronostico
+ref table Fact_Probabilidad_Pico
+ref table Fact_Eventos_Clasificacion
+ref table _Medidas
+ref table DateTableTemplate_029285c2-d43a-4d08-9dd3-e481856754a0
+ref table LocalDateTable_85a66ea5-7172-49b0-99b3-63af63efb838
+ref table LocalDateTable_68380a02-5d4f-4fed-8619-5eea315d21a9
+
+ref cultureInfo es-MX
+

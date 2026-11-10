@@ -1,0 +1,108 @@
+table Fact_Eventos_Clasificacion
+	lineageTag: e8c6e001-0009-4000-8000-000000000001
+
+	column datetime
+		dataType: dateTime
+		formatString: yyyy-MM-dd HH:mm:ss
+		lineageTag: e8c6e001-0009-4000-8000-000000000011
+		summarizeBy: none
+		sourceColumn: datetime
+
+		annotation SummarizationSetBy = Automatic
+
+	column zona_id
+		dataType: string
+		lineageTag: e8c6e001-0009-4000-8000-000000000012
+		summarizeBy: none
+		sourceColumn: zona_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column modelo
+		dataType: string
+		lineageTag: e8c6e001-0009-4000-8000-000000000013
+		summarizeBy: none
+		sourceColumn: modelo
+
+		annotation SummarizationSetBy = Automatic
+
+	column estrategia
+		dataType: string
+		lineageTag: e8c6e001-0009-4000-8000-000000000014
+		summarizeBy: none
+		sourceColumn: estrategia
+
+		annotation SummarizationSetBy = Automatic
+
+	column real
+		dataType: int64
+		formatString: 0
+		lineageTag: e8c6e001-0009-4000-8000-000000000015
+		summarizeBy: sum
+		sourceColumn: real
+
+		annotation SummarizationSetBy = Automatic
+
+	column probabilidad
+		dataType: double
+		formatString: 0.0 %
+		lineageTag: e8c6e001-0009-4000-8000-000000000016
+		summarizeBy: sum
+		sourceColumn: probabilidad
+
+		annotation SummarizationSetBy = Automatic
+
+	column umbral_probabilidad
+		dataType: double
+		formatString: 0.00
+		lineageTag: e8c6e001-0009-4000-8000-000000000017
+		summarizeBy: sum
+		sourceColumn: umbral_probabilidad
+
+		annotation SummarizationSetBy = Automatic
+
+	column threshold_p95
+		dataType: double
+		lineageTag: e8c6e001-0009-4000-8000-000000000018
+		summarizeBy: sum
+		sourceColumn: threshold_p95
+
+		annotation SummarizationSetBy = Automatic
+
+	column prediccion
+		dataType: int64
+		formatString: 0
+		lineageTag: e8c6e001-0009-4000-8000-000000000019
+		summarizeBy: sum
+		sourceColumn: prediccion
+
+		annotation SummarizationSetBy = Automatic
+
+	column estado_predicho
+		dataType: string
+		lineageTag: e8c6e001-0009-4000-8000-000000000020
+		summarizeBy: none
+		sourceColumn: estado_predicho
+
+		annotation SummarizationSetBy = Automatic
+
+	column estado_real
+		dataType: string
+		lineageTag: e8c6e001-0009-4000-8000-000000000021
+		summarizeBy: none
+		sourceColumn: estado_real
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_Eventos_Clasificacion = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents("C:\Users\camil\Escritorio\energy_demand_intelligence_repo\outputs\powerbi\Fact_Eventos_Clasificacion.csv"), [Delimiter=",", Columns=11, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+					#"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+					#"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"datetime", type datetime}, {"zona_id", type text}, {"modelo", type text}, {"estrategia", type text}, {"real", Int64.Type}, {"probabilidad", type number}, {"umbral_probabilidad", type number}, {"threshold_p95", type number}, {"prediccion", Int64.Type}, {"estado_predicho", type text}, {"estado_real", type text}})
+				in
+					#"Changed Type"
+
+	annotation PBI_ResultType = Table
+

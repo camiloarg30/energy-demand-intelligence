@@ -1,0 +1,54 @@
+relationship c1111111-0001-4000-8000-000000000001
+	fromColumn: Fact_Demanda_Horaria.zona_id
+	toColumn: Dim_Zona.zona_id
+
+relationship c1111111-0001-4000-8000-000000000002
+	fromColumn: Fact_Pronostico.zona_id
+	toColumn: Dim_Zona.zona_id
+
+relationship c1111111-0001-4000-8000-000000000003
+	fromColumn: Fact_Probabilidad_Pico.zona_id
+	toColumn: Dim_Zona.zona_id
+
+relationship c1111111-0001-4000-8000-000000000004
+	fromColumn: Fact_Eventos_Clasificacion.zona_id
+	toColumn: Dim_Zona.zona_id
+
+relationship c1111111-0002-4000-8000-000000000001
+	fromColumn: Fact_Demanda_Horaria.datetime
+	toColumn: Dim_Calendario.datetime
+
+relationship c1111111-0002-4000-8000-000000000002
+	fromColumn: Fact_Pronostico.datetime
+	toColumn: Dim_Calendario.datetime
+
+relationship c1111111-0002-4000-8000-000000000003
+	fromColumn: Fact_Eventos_Clasificacion.datetime
+	toColumn: Dim_Calendario.datetime
+
+relationship c1111111-0003-4000-8000-000000000001
+	fromColumn: Fact_Pronostico.horizonte
+	toColumn: Dim_Horizonte.horizonte
+
+relationship c1111111-0003-4000-8000-000000000002
+	fromColumn: Fact_Probabilidad_Pico.horizonte
+	toColumn: Dim_Horizonte.horizonte
+
+relationship c1111111-0005-4000-8000-000000000001
+	fromColumn: Fact_Pronostico.fecha_origen
+	toColumn: Dim_Fecha_Origen.fecha_origen
+
+relationship c1111111-0005-4000-8000-000000000002
+	fromColumn: Fact_Probabilidad_Pico.fecha_origen
+	toColumn: Dim_Fecha_Origen.fecha_origen
+
+relationship af025e76-f507-4bfb-a10d-892b07aa688c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Dim_Calendario.fecha
+	toColumn: LocalDateTable_85a66ea5-7172-49b0-99b3-63af63efb838.Date
+
+relationship 9d124f07-0363-48a7-b9b0-93096d211833
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Dim_Fecha_Origen.fecha
+	toColumn: LocalDateTable_68380a02-5d4f-4fed-8619-5eea315d21a9.Date
+

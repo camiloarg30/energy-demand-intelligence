@@ -1,0 +1,69 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "06d93e7092bbd5d28d4d",
+  "position": {
+    "x": 920,
+    "y": 2,
+    "z": 2000,
+    "height": 56,
+    "width": 1000,
+    "tabOrder": 2001
+  },
+  "visual": {
+    "visualType": "textbox",
+    "query": {
+      "queryState": {}
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": {
+              "expr": {
+                "Literal": {
+                  "Value": "[{\"textRuns\": [{\"value\": \"\\ud83d\\udcc5  \\u00daltima actualizaci\\u00f3n: 30 dic 2017 \\u00b7 23:00     |     \\ud83e\\udd16  Pron\\u00f3stico: AutoARIMA + Estacional     |     \\ud83d\\udcca  Picos: Regresi\\u00f3n Log\\u00edstica     |     \\u26a0 Prototipo Hist\\u00f3rico 2017\", \"textStyle\": {\"fontSize\": \"11pt\", \"color\": \"#BAE6FD\", \"fontFamily\": \"Segoe UI\"}}], \"horizontalTextAlignment\": \"Right\"}]"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "16D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

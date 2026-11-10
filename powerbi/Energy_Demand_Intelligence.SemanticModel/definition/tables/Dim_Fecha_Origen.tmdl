@@ -1,0 +1,100 @@
+table Dim_Fecha_Origen
+	lineageTag: e8c6e001-0005-4000-8000-000000000001
+
+	column fecha_origen
+		dataType: dateTime
+		formatString: yyyy-MM-dd HH:mm:ss
+		lineageTag: e8c6e001-0005-4000-8000-000000000011
+		summarizeBy: none
+		sourceColumn: fecha_origen
+
+		annotation SummarizationSetBy = Automatic
+
+	column fecha
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: e8c6e001-0005-4000-8000-000000000012
+		summarizeBy: none
+		sourceColumn: fecha
+
+		variation Variation
+			isDefault
+			relationship: 9d124f07-0363-48a7-b9b0-93096d211833
+			defaultHierarchy: LocalDateTable_68380a02-5d4f-4fed-8619-5eea315d21a9.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column hora
+		dataType: int64
+		formatString: 0
+		lineageTag: e8c6e001-0005-4000-8000-000000000013
+		summarizeBy: sum
+		sourceColumn: hora
+
+		annotation SummarizationSetBy = Automatic
+
+	column hora_str
+		dataType: string
+		lineageTag: e8c6e001-0005-4000-8000-000000000014
+		summarizeBy: none
+		sourceColumn: hora_str
+
+		annotation SummarizationSetBy = Automatic
+
+	column etiqueta_origen
+		dataType: string
+		lineageTag: e8c6e001-0005-4000-8000-000000000015
+		summarizeBy: none
+		sourceColumn: etiqueta_origen
+		sortByColumn: orden
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_semana
+		dataType: int64
+		formatString: 0
+		lineageTag: e8c6e001-0005-4000-8000-000000000016
+		summarizeBy: sum
+		sourceColumn: dia_semana
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_nombre
+		dataType: string
+		lineageTag: e8c6e001-0005-4000-8000-000000000017
+		summarizeBy: none
+		sourceColumn: dia_nombre
+
+		annotation SummarizationSetBy = Automatic
+
+	column mes_nombre
+		dataType: string
+		lineageTag: e8c6e001-0005-4000-8000-000000000018
+		summarizeBy: none
+		sourceColumn: mes_nombre
+
+		annotation SummarizationSetBy = Automatic
+
+	column orden
+		dataType: int64
+		formatString: 0
+		lineageTag: e8c6e001-0005-4000-8000-000000000019
+		summarizeBy: sum
+		sourceColumn: orden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Fecha_Origen = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents("C:\Users\camil\Escritorio\energy_demand_intelligence_repo\outputs\powerbi\Dim_Fecha_Origen.csv"), [Delimiter=",", Columns=9, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+					#"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+					#"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"fecha_origen", type datetime}, {"fecha", type date}, {"hora", Int64.Type}, {"hora_str", type text}, {"etiqueta_origen", type text}, {"dia_semana", Int64.Type}, {"dia_nombre", type text}, {"mes_nombre", type text}, {"orden", Int64.Type}})
+				in
+					#"Changed Type"
+
+	annotation PBI_ResultType = Table
+

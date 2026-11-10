@@ -1,0 +1,69 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "c3452b2526111dca7e59",
+  "position": {
+    "x": 16,
+    "y": 2,
+    "z": 2000,
+    "height": 56,
+    "width": 900,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "query": {
+      "queryState": {}
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": {
+              "expr": {
+                "Literal": {
+                  "Value": "[{\"textRuns\": [{\"value\": \"\\u26a1  Demanda El\\u00e9ctrica de T\\u00e9touan\", \"textStyle\": {\"fontWeight\": \"bold\", \"fontSize\": \"18pt\", \"color\": \"#FFFFFF\", \"fontFamily\": \"Segoe UI\"}}, {\"value\": \"   |   Pron\\u00f3stico de demanda y detecci\\u00f3n de picos\", \"textStyle\": {\"fontSize\": \"12pt\", \"color\": \"#BAE6FD\", \"fontFamily\": \"Segoe UI\"}}]}]"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
